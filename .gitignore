@@ -1,0 +1,30 @@
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Kubernetes / Infrastructure
+*.kubeconfig
+admin.conf
+kube-*.yaml
+!deployment/*.md
+
+# Container / Runtime
+containerd.config.toml
+*.log
+
+# Binaries / Temporary
+bin/
+obj/
+*.tmp
+*.bak
