@@ -146,7 +146,39 @@ Edit `/etc/kubernetes/manifests/kube-apiserver.yaml` and ensure `- --bind-addres
 ```
 
 #### 4.4 Remove host entry from probes
-Remove the `host` entry from `/etc/kubernetes/manifests/kube-apiserver.yaml` in the `probes` section to ensure the API server uses the local interface. Locate the `livenessProbe`, `readinessProbe`, and `startupProbe` and remove the line `host: <IP>`.
+Remove the `host` entry from `/etc/kubernetes/manifests/kube-apiserver.yaml` in the `probes` section to ensure the API server uses the local interface. Locate the `livenessProbe`, `readinessProbe`, and `startupProbe` and remove the line `host: <IP>`:
+```yaml
+livenessProbe:
+      failureThreshold: 8
+      httpGet:
+        path: /livez
+        port: 6443
+        scheme: HTTPS
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      timeoutSeconds: 15
+    name: kube-apiserver
+    readinessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /readyz
+        port: 6443
+        scheme: HTTPS
+      periodSeconds: 1
+      timeoutSeconds: 15
+    resources:
+      requests:
+        cpu: 250m
+    startupProbe:
+      failureThreshold: 24
+      httpGet:
+        path: /livez
+        port: 6443
+        scheme: HTTPS
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      timeoutSeconds: 15
+```
 
 #### 4.5 Install Cilium CNI
 Install the Cilium CLI and deploy Cilium to the cluster.
