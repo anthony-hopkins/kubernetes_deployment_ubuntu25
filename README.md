@@ -1,4 +1,4 @@
-### Deploying a 3-Node Kubernetes Cluster on Ubuntu 25.04 (Noble/Plucky equivalent) with Cilium CNI
+### Deploying a 3-Node Kubernetes Cluster on Ubuntu 25.10 (Questing Quokka) with Cilium CNI
 
 This guide provides a step-by-step method for deploying a 3-node Kubernetes cluster (1 controller and 2 workers) on Ubuntu 25 using `kubeadm` and `Cilium` as the CNI.
 
