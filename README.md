@@ -128,6 +128,7 @@ On the **Controller** node:
 sudo kubeadm init --skip-phases=addon/kube-proxy
 ```
 *Note: This will output a kubectl join command for the worker nodes. Ensure you cop and save this somewhere for that step later.*
+
 *Note: We skip `kube-proxy` because Cilium will replace its functionality for better performance and security.*
 
 #### 4.2 Configure kubectl for the User
